@@ -1,5 +1,6 @@
 import { useState, useRef, useEffect } from "react"
 import moment from "moment"
+import { Link } from "react-router-dom"
 
 import MainHeader from "./MainHeader"
 import AddBookmark from "./AddBookmark"
@@ -10,8 +11,11 @@ export default function Main({
   handleUpdateCollection,
   collections,
   handleAddBookmark,
+  handleDeleteBookmark,
   handleDeleteCollection,
   setActiveCollection,
+  user,
+  handleLogout,
 }) {
   const [open, setOpen] = useState(false)
   const [formData, setFormData] = useState(activeCollection)
@@ -42,7 +46,7 @@ export default function Main({
     })
   }
 
-  useEffect(() => console.log('Rerender'), [collections])
+  useEffect(() => console.log("Rerender"), [collections])
 
   return (
     <main className="main-container">
@@ -56,6 +60,7 @@ export default function Main({
         setOpen={setOpen}
         handleTitleClick={handleTitleClick}
         handleDeleteCollection={handleDeleteCollection}
+        user={user}
       />
       <section className="main-section">
         {activeCollection ? (
@@ -67,12 +72,42 @@ export default function Main({
             />
             <article className="main-section-bookmarks-container">
               {activeCollection.bookmarks.map((bookmark, idx) => (
-                <Bookmark bookmark={bookmark} key={idx} />
+                <Bookmark
+                  bookmark={bookmark}
+                  key={idx}
+                  idx={idx}
+                  handleDeleteBookmark={handleDeleteBookmark}
+                  activeCollection={activeCollection}
+                />
               ))}
             </article>
           </>
         ) : (
-          ""
+          <section>
+            {user ? (
+              <div>
+                <ul className="main-nav-button-container">
+                  <Link to="" onClick={handleLogout}>
+                    <li className="main-nav-button">Log Out</li>
+                  </Link>
+                  <Link to="/changePassword">
+                    <li className="main-nav-button">Change Password</li>
+                  </Link>
+                </ul>
+              </div>
+            ) : (
+              <nav>
+                <ul className="main-nav-button-container">
+                  <Link to="/login">
+                    <li className="main-nav-button">Log In</li>
+                  </Link>
+                  <Link to="/signup">
+                    <li className="main-nav-button">Sign Up</li>
+                  </Link>
+                </ul>
+              </nav>
+            )}
+          </section>
         )}
       </section>
     </main>

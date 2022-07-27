@@ -25,6 +25,18 @@ async function addBookmark(collection, bookmarkData) {
   return await res.json()
 }
 
+async function deleteBookmark(collection, bookmarkData) {
+  const res = await fetch(`${SERVER_URL}/bookmarks/${collection._id}`, {
+    method: "DELETE",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${tokenService.getToken()}`,
+    },
+    body: JSON.stringify(bookmarkData),
+  })
+  return await res.json()
+}
+
 async function update(collection) {
   const res = await fetch(`${SERVER_URL}/${collection._id}`, {
     method: "PUT",
@@ -58,4 +70,4 @@ async function getAll() {
   return await res.json()
 }
 
-export { create, addBookmark, update, getAll, deleteCollection }
+export { create, addBookmark, deleteBookmark, update, getAll, deleteCollection }

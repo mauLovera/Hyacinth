@@ -55,7 +55,12 @@ a {
 :root {
   --border-radius: 5px;
 
-  --accent-color: hsl(0, 100%, 50%);
+
+  --primary-color: #FFF4E8;
+  --accent-color: #7FA5B3;
+  --accent-color-2: #7FA5B3;
+  --accent-color-hover: #9ebeca;
+  --accent-color-2-hover: #9ebeca;
 }
 
 /*? ================ Sidebar =================== */
@@ -68,7 +73,7 @@ a {
 
   height: 100vh;
   width: 200px;
-  background-color: antiquewhite;
+  background-color: var(--primary-color);
 }
 
 /** ===== Sidebar Header ===== */
@@ -106,6 +111,7 @@ a {
   width: -webkit-max-content;
   width: -moz-max-content;
   width: max-content;
+  cursor: pointer;
 }
 
 /** ===== Sidebar Nav ===== */
@@ -135,11 +141,15 @@ a {
   padding: 0;
   font-weight: 300;
   background-color: transparent;
+  color: var(--text-color);
+  border-radius: var(--border-radius);
+  transition: .2s;
 }
 
 .sidebar-nav-add-collection-button:hover {
   cursor: pointer;
   background-color: white;
+  transition: .2s;
 }
 
 .sidebar-nav-collection-input-container {
@@ -180,11 +190,13 @@ a {
   padding: 0.25rem 0.5rem;
   background-color: transparent;
   min-height: 20px;
+  transition: .2s;
 }
 
 .sidebar-nav-collection-container:hover {
   background-color: white;
   cursor: pointer;
+  transition: .2s;
 }
 
 .sidebar-nav-collection-emoji-container {
@@ -230,6 +242,24 @@ a {
   flex-direction: column;
 }
 
+.main-nav-button-container {
+  display: flex;
+  gap: 1rem;
+}
+
+.main-nav-button {
+  padding: .5rem 1rem;
+  background-color: var(--accent-color);
+  border-radius: var(--border-radius);
+  transition: .2s;
+
+}
+
+.main-nav-button:hover {
+  background-color: var(--accent-color-hover);
+  transition: .2s;
+}
+
 /** ===== Main Header ===== */
 
 .main-collection-header-container {
@@ -237,7 +267,6 @@ a {
   gap: 0.5rem;
   align-items: center;
   height: 10vh;
-  outline: 1px solid red;
   padding: 1rem;
 }
 
@@ -273,6 +302,25 @@ a {
   margin-left: auto;
 }
 
+.main-collection-header-delete-button {
+  width: fit-content;
+  font-size: 16px;
+  padding: 0.4rem 1rem;
+  align-self: flex-end;
+  background-color: var(--accent-color-2);
+  border: 0;
+  border-radius: var(--border-radius);
+  outline: 2px solid transparent;
+  transition: .2s;
+}
+
+.main-collection-header-delete-button:hover {
+  background-color: var(--accent-color-2-hover);
+  outline: 2px solid white;
+  cursor: pointer;
+  transition: .2s;
+}
+
 /** ===== Main Section ===== */
 
 .main-section {
@@ -298,9 +346,15 @@ a {
   font-size: 24px;
   height: 50px;
   width: 75px;
-  background-color: antiquewhite;
+  background-color: var(--accent-color);
   border-radius: var(--border-radius);
   cursor: pointer;
+  transition: .2s;
+}
+
+.main-section-bookmark-icon:hover {
+  background-color: var(--accent-color-2-hover);
+  transition: .2s;
 }
 
 .main-section-add-bookmark-form-container {
@@ -310,7 +364,7 @@ a {
   align-items: flex-start;
   width: 300px;
   height: 100px;
-  background-color: antiquewhite;
+  background-color: var(--primary-color);
   bottom: -220%;
   border-radius: var(--border-radius);
 }
@@ -335,7 +389,7 @@ a {
   height: 25px;
   border-radius: calc(var(--border-radius) / 1.5);
   padding: .5rem;
-  outline: 0px solid transparent;
+  outline: 1px solid transparent;
   transition: .5s;
 }
 
@@ -348,14 +402,27 @@ a {
 .main-section-add-bookmark-button {
   margin-top: 0.25rem;
   width: fit-content;
-  padding: 0.25rem 1rem;
+  padding: 0.4rem 1rem;
   align-self: flex-end;
+  background-color: var(--accent-color-2);
+  border: 0;
+  border-radius: var(--border-radius);
+  transition: .2s;
+  outline: 2px solid transparent;
+}
+
+.main-section-add-bookmark-button:hover {
+  background-color: var(--accent-color-2-hover);
+  outline: 2px solid white;
+  cursor: pointer;
+  transition: .2s;
 }
 
 .main-section-bookmarks-container {
   display: flex;
   flex-direction: column;
   gap: .5rem;
+  height: 70vh;
 }
 
 .main-section-bookmark-container {
@@ -367,13 +434,14 @@ a {
   align-items: center;
   height: 50px;
   padding: .25rem 0 .25rem .5rem;
-  background-color: antiquewhite;
+  background-color: var(--primary-color);
   border-radius: var(--border-radius);
   flex-grow: 1;
 }
 
 .main-section-bookmark-left {
   flex-grow: 1;
+
 }
 
 .main-section-bookmark-right {
@@ -410,7 +478,7 @@ a {
 /*! ANIMATIONS */
 
 .ease {
-  animation: .1s appear ease-in;
+  animation: .2s appear ease-in;
 }
 
 .deactive {

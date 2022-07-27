@@ -39,15 +39,23 @@ const App = () => {
       (collection, idx) => collection._id !== deletedCollection._id
     )
     setCollections(newCollectionArray)
-    setActiveCollection('')
+    setActiveCollection("")
   }
 
   async function handleAddBookmark(collection, bookmarkData) {
-    const newBookmark = await collectionService.addBookmark(
+    const newCollection = await collectionService.addBookmark(
       collection,
       bookmarkData
     )
-    setActiveCollection(newBookmark)
+    setActiveCollection(newCollection)
+  }
+
+  async function handleDeleteBookmark(collection, bookmarkData) {
+    const newCollection = await collectionService.deleteBookmark(
+      collection,
+      bookmarkData
+    )
+    setActiveCollection(newCollection)
   }
 
   async function handleUpdateCollection(updatedCollectionData) {
@@ -76,22 +84,33 @@ const App = () => {
   return (
     <>
       {/* <NavBar user={user} handleLogout={handleLogout} /> */}
-      <Sidebar
-        collections={collections}
-        activeCollection={activeCollection}
-        handleAddCollection={handleAddCollection}
-        handleCollectionClick={handleCollectionClick}
-      />
-      <Main
-        collections={collections}
-        activeCollection={activeCollection}
-        handleUpdateCollection={handleUpdateCollection}
-        handleAddBookmark={handleAddBookmark}
-        handleDeleteCollection={handleDeleteCollection}
-        setActiveCollection={setActiveCollection}
-      />
       <Routes>
-        {/* <Route path="/" element={<Landing user={user} />} /> */}
+        <Route
+          path="/"
+          element={
+            <>
+              <Sidebar
+                collections={collections}
+                activeCollection={activeCollection}
+                handleAddCollection={handleAddCollection}
+                handleCollectionClick={handleCollectionClick}
+                user={user}
+                setActiveCollection={setActiveCollection}
+              />
+              <Main
+                collections={collections}
+                activeCollection={activeCollection}
+                handleUpdateCollection={handleUpdateCollection}
+                handleAddBookmark={handleAddBookmark}
+                handleDeleteCollection={handleDeleteCollection}
+                setActiveCollection={setActiveCollection}
+                handleDeleteBookmark={handleDeleteBookmark}
+                user={user}
+                handleLogout={handleLogout}
+              />
+            </>
+          }
+        />
         <Route
           path="/signup"
           element={<Signup handleSignupOrLogin={handleSignupOrLogin} />}

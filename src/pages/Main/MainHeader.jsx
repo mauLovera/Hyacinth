@@ -10,11 +10,12 @@ export default function MainHeader({
   setOpen,
   handleTitleClick,
   handleDeleteCollection,
+  user,
 }) {
   return (
     <header>
       <div className="main-collection-header-container">
-        {activeCollection ? (
+        {activeCollection && user ? (
           <>
             <div className="main-collection-header-emoji">
               {activeCollection.emoji}
@@ -53,7 +54,7 @@ export default function MainHeader({
                   </h1>
                 </>
               ) : (
-                <>
+                <div style={{display: 'flex', alignItems: 'baseline', gap : '1rem'}}>
                   <input type="text" style={{ display: "none" }} />
                   <h1
                     className="main-collection-header-title"
@@ -63,18 +64,19 @@ export default function MainHeader({
                   >
                     {activeCollection.title}
                   </h1>
-                </>
+                  <p style={{opacity: '0.5'}}>Click to edit!</p>
+                </div>
               )}
             </div>
             <div className="main-collection-header-details-button">
-              <button onClick={() => handleDeleteCollection(activeCollection._id)}>Delete</button>
+              <button onClick={() => handleDeleteCollection(activeCollection._id)} className='main-collection-header-delete-button'>Delete Collection </button>
             </div>
           </>
         ) : (
           <>
-            <div className="main-collection-header-emoji">🤷‍♂️</div>
+            <div className="main-collection-header-emoji">👋</div>
             <h1 className="main-collection-header-title">
-              No Collection Selected
+              Welcome to Hyacinth! 
             </h1>
           </>
         )}

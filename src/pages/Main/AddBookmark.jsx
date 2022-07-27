@@ -20,11 +20,9 @@ export default function AddBookmark({ handleAddBookmark, activeCollection, setAc
   async function handleSubmit(e) {
     e.preventDefault()
     handleAddBookmark(activeCollection, formData)
-  }
-
-  function useForceUpdate() {
-    const [update, setUpdate] = useState(0)
-    return () => setUpdate(update => update + 1)
+    setFormData({
+      url: 'https://'
+    })
   }
 
   function handleChange(e) {
@@ -33,8 +31,6 @@ export default function AddBookmark({ handleAddBookmark, activeCollection, setAc
       [e.target.name]: e.target.value,
     })
   }
-
-  const forceUpdate = useForceUpdate()
 
   return (
     <div className="main-section-add-bookmark-container">
