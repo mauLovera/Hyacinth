@@ -58,7 +58,7 @@ export default function Sidebar({
           <header className="sidebar-header">
             <div className="sidebar-header-profile-photo-container">
               <img
-                src={profile.photo}
+                src={profile?.photo}
                 alt="profile avatar"
                 className="sidebar-header-profile-photo"
               />
