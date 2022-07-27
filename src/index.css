@@ -54,7 +54,8 @@ a {
 
 :root {
   --border-radius: 5px;
-
+  --text-color: black;
+  --tex-color-hover: white;
 
   --primary-color: #FFF4E8;
   --accent-color: #7FA5B3;
@@ -248,15 +249,18 @@ a {
 }
 
 .main-nav-button {
-  padding: .5rem 1rem;
+  padding: .5rem 2rem;
   background-color: var(--accent-color);
   border-radius: var(--border-radius);
+  font-weight: 600;
+  color: var(--text-color);
   transition: .2s;
-
 }
 
 .main-nav-button:hover {
   background-color: var(--accent-color-hover);
+  color: var(--tex-color-hover);
+
   transition: .2s;
 }
 
