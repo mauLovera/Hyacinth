@@ -1,6 +1,16 @@
 import React from "react"
 
-export default function MainHeader({activeCollection, open, formElement, handleSubmit, formData, handleChange, setOpen, handleTitleClick}) {
+export default function MainHeader({
+  activeCollection,
+  open,
+  formElement,
+  handleSubmit,
+  formData,
+  handleChange,
+  setOpen,
+  handleTitleClick,
+  handleDeleteCollection,
+}) {
   return (
     <header>
       <div className="main-collection-header-container">
@@ -24,6 +34,7 @@ export default function MainHeader({activeCollection, open, formElement, handleS
                       onChange={handleChange}
                       defaultValue={formData.title}
                       name="title"
+                      className="main-collection-header-form-input"
                     />
                     <div
                       className="main-collection-header-cancel-button"
@@ -56,14 +67,12 @@ export default function MainHeader({activeCollection, open, formElement, handleS
               )}
             </div>
             <div className="main-collection-header-details-button">
-              <button>Details</button>
+              <button onClick={() => handleDeleteCollection(activeCollection._id)}>Delete</button>
             </div>
           </>
         ) : (
           <>
-            <div className="main-collection-header-emoji">
-              🤷‍♂️
-            </div>
+            <div className="main-collection-header-emoji">🤷‍♂️</div>
             <h1 className="main-collection-header-title">
               No Collection Selected
             </h1>

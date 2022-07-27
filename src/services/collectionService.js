@@ -1,54 +1,61 @@
-import * as tokenService from './tokenService'
+import * as tokenService from "./tokenService"
 const SERVER_URL = `${process.env.REACT_APP_BACK_END_SERVER_URL}/api/collections`
 
-async function create(event) {
+async function create(collection) {
   const res = await fetch(SERVER_URL, {
-    method: 'POST',
+    method: "POST",
     headers: {
-      'Content-Type': 'application/json',
-      'Authorization': `Bearer ${tokenService.getToken()}`
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${tokenService.getToken()}`,
     },
-    body: JSON.stringify(event)
+    body: JSON.stringify(collection),
   })
-	return await res.json()
+  return await res.json()
 }
 
-async function update(event) {
-  const res = await fetch(`${SERVER_URL}/${event._id}`, {
-    method: 'PUT',
+async function addBookmark(collection, bookmarkData) {
+  const res = await fetch(`${SERVER_URL}/${collection._id}/bookmarks`, {
+    method: "POST",
     headers: {
-      'Content-Type': 'application/json',
-      'Authorization': `Bearer ${tokenService.getToken()}`
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${tokenService.getToken()}`,
     },
-    body: JSON.stringify(event)
+    body: JSON.stringify(bookmarkData),
   })
-	return await res.json()
+  return await res.json()
 }
 
-async function deleteEvent(id) {
+async function update(collection) {
+  const res = await fetch(`${SERVER_URL}/${collection._id}`, {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${tokenService.getToken()}`,
+    },
+    body: JSON.stringify(collection),
+  })
+  return await res.json()
+}
+
+async function deleteCollection(id) {
   const res = await fetch(`${SERVER_URL}/${id}`, {
-    method: 'DELETE',
+    method: "DELETE",
     headers: {
-      'Authorization': `Bearer ${tokenService.getToken()}`
-    },
-  })
-	return await res.json()
-}
-
-async function getAll() {
-  const res = await fetch(`${SERVER_URL}/`, {
-    method: 'GET',
-    headers: {
-      'Content-Type': 'application/json',
-      'Authorization': `Bearer ${tokenService.getToken()}`
+      Authorization: `Bearer ${tokenService.getToken()}`,
     },
   })
   return await res.json()
 }
 
-export {
-	create,
-  update,
-  getAll,
-  deleteEvent,
+async function getAll() {
+  const res = await fetch(`${SERVER_URL}/`, {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${tokenService.getToken()}`,
+    },
+  })
+  return await res.json()
 }
+
+export { create, addBookmark, update, getAll, deleteCollection }

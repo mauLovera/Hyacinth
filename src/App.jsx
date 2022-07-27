@@ -31,6 +31,25 @@ const App = () => {
     setCollections([...collections, newCollection])
   }
 
+  const handleDeleteCollection = async (collectionId) => {
+    const deletedCollection = await collectionService.deleteCollection(
+      collectionId
+    )
+    const newCollectionArray = collections.filter(
+      (collection, idx) => collection._id !== deletedCollection._id
+    )
+    setCollections(newCollectionArray)
+    setActiveCollection('')
+  }
+
+  async function handleAddBookmark(collection, bookmarkData) {
+    const newBookmark = await collectionService.addBookmark(
+      collection,
+      bookmarkData
+    )
+    setActiveCollection(newBookmark)
+  }
+
   async function handleUpdateCollection(updatedCollectionData) {
     const updatedCollection = await collectionService.update(
       updatedCollectionData
@@ -67,6 +86,9 @@ const App = () => {
         collections={collections}
         activeCollection={activeCollection}
         handleUpdateCollection={handleUpdateCollection}
+        handleAddBookmark={handleAddBookmark}
+        handleDeleteCollection={handleDeleteCollection}
+        setActiveCollection={setActiveCollection}
       />
       <Routes>
         {/* <Route path="/" element={<Landing user={user} />} /> */}

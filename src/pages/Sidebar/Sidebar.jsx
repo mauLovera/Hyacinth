@@ -45,7 +45,7 @@ export default function Sidebar({ collections, handleAddCollection, handleCollec
   }, [])
 
   return (
-    <aside className="sidebar-container">
+    <aside className="sidebar-container" id="sidebar">
       <header className="sidebar-header">
         <div className="sidebar-header-profile-photo-container">
           <img
